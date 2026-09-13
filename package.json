@@ -1,0 +1,11 @@
+{
+  "name": "gaming-studio-root",
+  "version": "1.0.0",
+  "description": "Nexus Forge Gaming Studio — Monorepo Root",
+  "scripts": {
+    "start:server": "cd server && npm run dev",
+    "start:client": "cd client && npm run start",
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "seed": "cd server && npm run seed"
+  }
+}
