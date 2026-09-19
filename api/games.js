@@ -233,16 +233,23 @@ export default function handler(req, res) {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  const { slug, genre, search, sortBy, badge } = req.query;
+  const query = req.query || {};
+  const targetSlug = query.slug;
 
-  // Single game lookup by slug
-  if (slug) {
-    const game = games.find(g => g.slug === slug);
-    if (!game) return res.status(404).json({ success: false, message: 'Game not found' });
-    return res.status(200).json({ success: true, data: game });
+  // Single game lookup by slug (only if targetSlug is a real game slug)
+  if (targetSlug && targetSlug !== 'games' && targetSlug !== 'index' && targetSlug !== 'api') {
+    const game = games.find(g => g.slug === targetSlug);
+    if (game) {
+      return res.status(200).json({ success: true, data: game });
+    }
   }
 
   let result = [...games];
+
+  const genre = query.genre;
+  const badge = query.badge;
+  const search = query.search;
+  const sortBy = query.sortBy;
 
   if (genre && genre !== 'All') {
     result = result.filter(g => g.genre.toLowerCase() === genre.toLowerCase());

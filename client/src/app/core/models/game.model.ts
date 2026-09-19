@@ -11,9 +11,9 @@ export interface Game {
   badge: string;
   thumbnail_url: string;
   trailer_url: string;
-  screenshots_json: string;
-  system_reqs_json: string;
-  tags_json: string;
+  screenshots_json?: string;
+  system_reqs_json?: string;
+  tags_json?: string;
   release_date: string;
   // Parsed helpers (populated on the client)
   screenshots?: string[];
