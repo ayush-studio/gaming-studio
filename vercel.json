@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cd client && npm install && npm run build",
+  "outputDirectory": "client/dist/client/browser",
+  "rewrites": [
+    { "source": "/api/games/(.*)", "destination": "/api/games?slug=$1" },
+    { "source": "/api/orders/checkout", "destination": "/api/orders" },
+    { "source": "/api/orders/(.*)", "destination": "/api/orders?orderNumber=$1" },
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
